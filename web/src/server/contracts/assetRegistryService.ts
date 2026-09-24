@@ -67,8 +67,20 @@ const logger = pino({ level: process.env['LOG_LEVEL'] ?? 'info' });
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const ROOT_DIR = path.resolve(__dirname, '../../../../');
-const DEPLOYMENT_PATH = path.join(ROOT_DIR, 'deployment.json');
+// Look for deployment.json inside web/ first (works on Vercel),
+// fall back to repo root for local monorepo dev.
+const WEB_ROOT = path.resolve(__dirname, '../../../');
+const REPO_ROOT = path.resolve(__dirname, '../../../../');
+const DEPLOYMENT_PATH = (() => {
+  const webPath = path.join(WEB_ROOT, 'deployment.json');
+  const repoPath = path.join(REPO_ROOT, 'deployment.json');
+  try {
+    require('fs').accessSync(webPath);
+    return webPath;
+  } catch {
+    return repoPath;
+  }
+})();
 
 const ALICE_SEED = '0000000000000000000000000000000000000000000000000000000000000001';
 const PRIVATE_STATE_ID = process.env['PRIVATE_STATE_ID'] ?? 'ZeraPrivateState';
