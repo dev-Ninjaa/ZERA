@@ -164,11 +164,11 @@ async function loadMidnightRuntime(): Promise<MidnightRuntime> {
 
   try {
     const [configMod, walletMod, providersMod, witnessMod, contractsMod] = await Promise.all([
-      import('@zera/contracts/config'),
-      import('@zera/contracts/wallet'),
-      import('@zera/contracts/providers'),
-      import('@zera/contracts/witness'),
-      import('@zera/contracts'),
+      import('../../contracts-dist/config.js'),
+      import('../../contracts-dist/wallet.js'),
+      import('../../contracts-dist/providers.js'),
+      import('../../contracts-dist/witness.js'),
+      import('../../contracts-dist/index.js'),
     ]);
 
     runtimeCache = {

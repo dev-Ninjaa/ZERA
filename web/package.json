@@ -17,7 +17,6 @@
     "db:setup": "bun run prisma:generate && bun run prisma:db-push"
   },
   "dependencies": {
-    "@zera/contracts": "workspace:*",
     "@hookform/resolvers": "^5.2.2",
     "@midnight-ntwrk/compact-runtime": "0.16.0",
     "@midnight-ntwrk/dapp-connector-api": "^4.0.1",
