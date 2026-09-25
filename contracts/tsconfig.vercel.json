@@ -1,0 +1,15 @@
+{
+    "compilerOptions":  {
+                            "noImplicitAny":  false,
+                            "strict":  false,
+                            "skipLibCheck":  true
+                        },
+    "include":  [
+                    "src/config.ts",
+                    "src/providers.ts",
+                    "src/witness.ts",
+                    "src/index.ts",
+                    "src/managed/**/*.ts"
+                ],
+    "extends":  "./tsconfig.json"
+}
