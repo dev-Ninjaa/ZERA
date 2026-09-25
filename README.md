@@ -312,7 +312,3 @@ For a comprehensive deep dive into the ZERA platform, please explore our `docs/`
 - **[Local Testing Guide](docs/LOCAL_TESTING.md)** — Managing local test networks and running suites.
 
 ---
-
-<p align="center">
-  <img width="1200" height="277" alt="foooooterrrrr" src="https://github.com/user-attachments/assets/38f185c1-8203-429e-8348-745db0a9291d" />
-</p>
