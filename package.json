@@ -1,0 +1,36 @@
+{
+  "name": "zera",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "workspaces": [
+    "web",
+    "contracts"
+  ],
+  "scripts": {
+    "preinstall": "node scripts/check-node.mjs",
+    "compact:compile": "bun run --filter @zera/contracts compact:compile",
+    "copy-artifacts": "bun run --filter @zera/web copy-zk-configs",
+    "services:up": "docker compose up -d --wait && (docker start zera-db || bun run db:up)",
+    "services:down": "docker compose down && bun run db:down",
+    "db:up": "docker run --name zera-db -e POSTGRES_PASSWORD=zera -e POSTGRES_DB=zera -p 5432:5432 -d postgres:16",
+    "db:down": "docker rm -f zera-db",
+    "db:setup": "bun run --filter @zera/web db:setup",
+    "storage:dev": "cd storage && cargo run",
+    "project:prepare": "bun run services:up && bun run compact:compile && bun --filter @zera/contracts build && bun run copy-artifacts && bun run db:setup",
+    "start:all": "bun run project:prepare && bun run deploy && bun run --parallel dev:web storage:dev",
+    "dev:web": "bun run --filter @zera/web dev",
+    "test": "bun run --filter @zera/contracts test",
+    "deploy": "bun run --filter @zera/contracts deploy",
+    "clean": "node scripts/clean.mjs"
+  },
+  "devDependencies": {
+    "cross-env": "^10.1.0",
+    "shx": "^0.3.4",
+    "tsx": "^4.0.0",
+    "typescript": "^5.7.0"
+  }
+}

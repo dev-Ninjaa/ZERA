@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnp
+.pnp.js
+
+# Build artifacts
+build/
+.next/
+out/
+target/
+**/target/
+storage/target/
+
+# contracts/dist is committed (pre-deployed, Vercel needs it)
+# web/src/generated is committed (pre-deployed artifacts)
+
+# Midnight specific
+midnight-level-db/
+indexer-db/
+proof-server-db/
+**/midnight-level-db/
+logs/
+*.log
+
+# Compact Compiler
+*.compact
+!contracts/src/*.compact
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+web/.env
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Prisma
+web/prisma/dev.db
+web/prisma/dev.db-journal
+
+# Storage Service downloaded files
+storage/downloaded_*
+
+.code-review-graph/*
