@@ -33,7 +33,7 @@ export async function GET(
   ]);
 
 
-  const portfolioValue = assets.reduce((acc: number, a) => {
+  const portfolioValue = assets.reduce((acc: number, a: { price: string | null }) => {
     const v = Number.parseFloat((a.price ?? '0').replace(/[^0-9.]/g, ''));
     return acc + (Number.isFinite(v) ? v : 0);
   }, 0);
