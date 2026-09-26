@@ -24,7 +24,7 @@ export async function GET(request: Request) {
   if (ownerAddress) {
     const owned = await prisma.asset.findMany({ where: { owner: ownerAddress } });
     ownedCount = owned.length;
-    const total = owned.reduce((acc, a) => {
+    const total = owned.reduce((acc: number, a: { price: string | null }) => {
       const v = Number.parseFloat((a.price ?? '0').replace(/[^0-9.]/g, ''));
       return acc + (Number.isFinite(v) ? v : 0);
     }, 0);
