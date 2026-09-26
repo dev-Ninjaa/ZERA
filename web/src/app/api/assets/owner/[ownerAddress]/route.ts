@@ -40,7 +40,7 @@ export async function GET(
 
   return NextResponse.json({
     ownerAddress,
-    assets: assets.map((a) => ({
+    assets: assets.map((a: { id: string; title: string | null; description: string | null; creator: string; owner: string; price: string | null; imageUrl: string | null; metadataUri: string; badges: string[]; verified: boolean; isPrivate: boolean; createdAt: Date; updatedAt: Date }) => ({
       id: a.id,
       title: a.title ?? a.id,
       description: a.description ?? undefined,
